@@ -4,11 +4,14 @@ metadata:
   name: {{ .Release.Name }}-website
   labels:
     app: {{ .Release.Name }}-website
+  {{- with .Values.ingress.annotations }}
   annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: "0"
-
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
-  ingressClassName: nginx
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   {{ if .Values.cdash.https }}
   tls:
     - secretName: "{{ .Release.Name }}-tls"

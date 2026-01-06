@@ -65,6 +65,11 @@ cdash:
       requests:
         memory: 256Mi
 
+ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+  ingressClassName: nginx
+
 # This setting is necessary for us to be able to use
 # the bitnamilegacy repository for postgres and minio.
 global:
