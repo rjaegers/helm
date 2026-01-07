@@ -65,6 +65,16 @@ cdash:
       requests:
         memory: 256Mi
 
+  secrets:
+    # When secrets are specified here, they are used to
+    # populate the corresponding Kubernetes Secrets for
+    # the application.
+    # If left blank, random values will be generated
+    # and stored in the corresponding Kubernetes Secrets.
+    appKey: ""
+    awsSecretAccessKey: ""
+    postgresqlPassword: ""
+
 ingress:
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
